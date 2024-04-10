@@ -16,7 +16,7 @@ class Task
     }
 }
 
-class Program
+class MainMenu
 {
     static List<Task> tasks = new List<Task>();
 
@@ -74,13 +74,31 @@ class Program
     {
         Console.Write("Enter the task name: ");
         string name = Console.ReadLine();
-        Console.Write("Enter the due date (yyyy-mm-dd): ");
-        DateTime dueDate = DateTime.Parse(Console.ReadLine());
+        DateTime dueDate = DateTime.MinValue; 
+        bool validDate = false;
+
+        while (!validDate)
+        {
+            Console.Write("Enter the due date (yyyy-mm-dd): ");
+            string dueDateString = Console.ReadLine();
+
+            try
+            {
+                dueDate = DateTime.Parse(dueDateString);
+                validDate = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid date format. Please enter the due date in yyyy-mm-dd format.");
+            }
+        }
+
         Console.Write("Enter the status (Not Started, In Progress, Complete): ");
         string status = Console.ReadLine();
         tasks.Add(new Task(name, dueDate, status));
         Console.WriteLine("Task added successfully.");
     }
+
 
     static void RemoveTask()
     {
@@ -125,7 +143,7 @@ class Program
         }
     }
 
-    static void SaveToFile()  // Saves the file in the exe folder
+    static void SaveToFile()
     {
         Console.Write("Enter the file name to save: ");
         string fileName = Console.ReadLine();
@@ -148,7 +166,7 @@ class Program
         }
     }
 
-    static void LoadFromFile()   // Loads if match name in exe folder
+    static void LoadFromFile()
     {
         Console.Write("Enter the file name to load: ");
         string fileName = Console.ReadLine();
