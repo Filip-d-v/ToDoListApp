@@ -31,7 +31,7 @@ class MainMenu
             Console.WriteLine("2. Change Task Status");
             Console.WriteLine("3. Remove Task From List");
             Console.WriteLine("4. Display Tasks");
-            Console.WriteLine("5. Save List to file");
+            Console.WriteLine("5. Save List to File");
             Console.WriteLine("6. Load List from File");
             Console.WriteLine("7. Exit");
 
